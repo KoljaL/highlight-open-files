@@ -6,11 +6,11 @@
   "engines": {
     "vscode": "^1.46.0"
   },
-  "publisher": "ArturoDent",
+  "publisher": "KoljaL",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ArturoDent/highlight-files"
+    "url": "https://github.com/KoljaL/highlight-open-files"
   },
   "main": "./src/extension.js",
   "browser": "./src/extension.js",
