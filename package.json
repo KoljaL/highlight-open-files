@@ -1,0 +1,87 @@
+{
+  "name": "highlight-open-files",
+  "displayName": "Highlight Open Files",
+  "description": "Highlight currently open files in the editor tabs and explorer with a configurable color and badge.",
+  "version": "1.0.0",
+  "engines": {
+    "vscode": "^1.46.0"
+  },
+  "publisher": "ArturoDent",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ArturoDent/highlight-files"
+  },
+  "main": "./src/extension.js",
+  "browser": "./src/extension.js",
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "configuration": [
+      {
+        "title": "Highlight Open Files",
+        "properties": {
+          "highlightOpenFiles.decorations.enable.color": {
+            "type": "boolean",
+            "scope": "window",
+            "order": 0,
+            "default": true,
+            "markdownDescription": "Enable colored labels on the tabs and explorer entries of all currently open files.\n\nRequires `#workbench.editor.decorations.colors#` and `#explorer.decorations.colors#` to be enabled.\n\nThe highlight color can be customized via `workbench.colorCustomizations`: `highlightOpenFiles.openFiles`."
+          },
+          "highlightOpenFiles.decorations.enable.badges": {
+            "type": "boolean",
+            "scope": "window",
+            "order": 1,
+            "default": true,
+            "markdownDescription": "Enable badge characters on the tabs and explorer entries of all currently open files.\n\nRequires `#workbench.editor.decorations.badges#` and `#explorer.decorations.badges#` to be enabled.\n\nThe badge character can be configured via `#highlightOpenFiles.decorations.badge#`."
+          },
+          "highlightOpenFiles.decorations.badge": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 1,
+            "scope": "window",
+            "order": 2,
+            "default": "●",
+            "markdownDescription": "The badge character shown on tabs and explorer entries of open files. Accepts 1-2 characters, including unicode (e.g. `⬤`, `★`, `🔥`).\n\nOnly visible when `#highlightOpenFiles.decorations.enable.badges#` is enabled."
+          }
+        }
+      }
+    ],
+    "colors": [
+      {
+        "id": "highlightOpenFiles.openFiles",
+        "description": "Color for open file editor labels and explorer entries",
+        "defaults": {
+          "dark": "#7a4eb5",
+          "light": "#663399",
+          "highContrast": "#9b6fd4",
+          "highContrastLight": "#663399"
+        }
+      }
+    ]
+  },
+  "extensionKind": [
+    "ui",
+    "workspace"
+  ],
+  "scripts": {
+    "lint": "eslint .",
+    "pretest": "npm run lint",
+    "test": "node ./test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.46.0",
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^10.0.9",
+    "@types/node": "^20.17.0",
+    "eslint": "^8.57.1",
+    "glob": "^7.2.3",
+    "mocha": "^10.7.3",
+    "typescript": "^5.7.0",
+    "@vscode/test-electron": "^2.4.0"
+  }
+}
