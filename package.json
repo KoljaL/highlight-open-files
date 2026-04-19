@@ -4,7 +4,7 @@
   "description": "Highlight currently open files in the editor tabs and explorer with a configurable color and badge.",
   "version": "1.0.0",
   "engines": {
-    "vscode": "^1.46.0"
+    "vscode": "^1.74.0"
   },
   "publisher": "KoljaL",
   "license": "MIT",
@@ -13,9 +13,16 @@
     "url": "https://github.com/KoljaL/highlight-open-files"
   },
   "main": "./src/extension.js",
-  "browser": "./src/extension.js",
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "highlight",
+    "open files",
+    "tabs",
+    "explorer",
+    "decoration",
+    "badge"
   ],
   "activationEvents": [
     "onStartupFinished"
@@ -69,12 +76,13 @@
     "workspace"
   ],
   "scripts": {
+    "vscode:prepublish": "npm run lint",
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.46.0",
+    "@types/vscode": "^1.74.0",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "^20.17.0",
