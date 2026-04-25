@@ -87,8 +87,8 @@
         "id": "highlightOpenFiles.openFiles",
         "description": "Color for open file editor labels and explorer entries",
         "defaults": {
-          "dark": "#7a4eb5",
-          "light": "#663399",
+          "dark": "#7a4eb580",
+          "light": "#66339980",
           "highContrast": "#9b6fd4",
           "highContrastLight": "#663399"
         }

@@ -32,8 +32,8 @@ The active file uses the `highlightOpenFiles.activeFile` color token (defaults t
 
 ```jsonc
 "workbench.colorCustomizations": {
-    "highlightOpenFiles.openFiles":  "#7a4eb5",  // open files — muted
-    "highlightOpenFiles.activeFile": "#c586c0"   // active file — brighter
+    "highlightOpenFiles.openFiles":  "#7a4eb580",  // open files — muted, 50% opacity
+    "highlightOpenFiles.activeFile": "#c586c0"      // active file — brighter, full opacity
 }
 ```
 
@@ -94,6 +94,52 @@ You can browse and copy unicode characters at [symbl.cc](https://symbl.cc) or [u
 | `»`   | `»`       | Double angle — subtle marker        |
 | `✦`   | `✦`       | Four-pointed star                   |
 
+## Preset Examples
+
+Copy any preset into your `settings.json` to get started quickly.
+
+### Preset A — Classic (default)
+Color + badge, muted open files, bright active file:
+```jsonc
+"highlightOpenFiles.decorations.badge": "●",
+"highlightOpenFiles.decorations.activeBadge": "▶",
+"workbench.colorCustomizations": {
+    "highlightOpenFiles.openFiles":  "#7a4eb580",  // muted purple, 50% opacity
+    "highlightOpenFiles.activeFile": "#c586c0"      // bright pink-purple, full opacity
+}
+```
+
+### Preset B — Badge only (SCM-friendly)
+No color, so git decorations are unaffected:
+```jsonc
+"highlightOpenFiles.decorations.enable.color": false,
+"highlightOpenFiles.decorations.badge": "○",
+"highlightOpenFiles.decorations.activeBadge": "◉"
+```
+
+### Preset C — Folder awareness
+Propagates color up to parent folders so you can see which folders have open files:
+```jsonc
+"highlightOpenFiles.decorations.enable.propagate": true,
+"highlightOpenFiles.decorations.badge": "◆",
+"highlightOpenFiles.decorations.activeBadge": "★",
+"workbench.colorCustomizations": {
+    "highlightOpenFiles.openFiles":  "#4ec9e080",  // cyan, 50% opacity
+    "highlightOpenFiles.activeFile": "#ffcc00"      // yellow — visually distinct
+}
+```
+
+### Preset D — Minimal (active file only)
+Only the currently focused file is highlighted, nothing else:
+```jsonc
+"highlightOpenFiles.decorations.enable.badges": false,
+"highlightOpenFiles.decorations.enable.color": false,
+"highlightOpenFiles.decorations.enable.activeFile": true,
+"workbench.colorCustomizations": {
+    "highlightOpenFiles.activeFile": "#ffcc00"
+}
+```
+
 ## Prerequisites
 
 These built-in VS Code settings control whether any file decoration provider can show colors and badges. They default to `true`, so you typically don't need to change them — but if decorations are not showing, verify they are enabled:
@@ -114,9 +160,17 @@ These built-in VS Code settings control whether any file decoration provider can
 
 ## Known Issues
 
+- **SCM badge conflict:** The badge slot is shared with other decoration providers (e.g. git SCM). If a file has git status, the SCM badge (`M`, `U`, `D`) takes precedence over this extension's badge. Use Preset B (badge only, no color) or disable badges via `enable.badges: false` if you rely on SCM badges.
 - After installing, you may need to reload VS Code once to activate the extension.
 
 ## Release Notes
+
+### 1.1.0
+
+- Added active file highlighting with distinct color (`highlightOpenFiles.activeFile`) and badge (`activeBadge`)
+- Added folder color propagation (`enable.propagate`)
+- Fixed: extension now activates correctly when only badges (not color) are enabled
+- Added extension icon
 
 ### 1.0.0
 
