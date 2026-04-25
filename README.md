@@ -15,11 +15,35 @@ A VS Code extension that highlights currently open files in the editor tabs and 
 
 ## Settings
 
-| Setting                                        | Type      | Default | Description                                   |
-| ---------------------------------------------- | --------- | ------- | --------------------------------------------- |
-| `highlightOpenFiles.decorations.enable.color`  | `boolean` | `true`  | Enable colored labels on tabs of open files   |
-| `highlightOpenFiles.decorations.enable.badges` | `boolean` | `true`  | Enable badges on tabs of open files           |
-| `highlightOpenFiles.decorations.badge`         | `string`  | `●`     | Badge character (1-2 chars, supports unicode) |
+| Setting                                            | Type      | Default | Description                                     |
+| -------------------------------------------------- | --------- | ------- | ----------------------------------------------- |
+| `highlightOpenFiles.decorations.enable.color`      | `boolean` | `true`  | Enable colored labels on tabs of open files     |
+| `highlightOpenFiles.decorations.enable.badges`     | `boolean` | `true`  | Enable badges on tabs of open files             |
+| `highlightOpenFiles.decorations.badge`             | `string`  | `●`     | Badge character (1-2 chars, supports unicode)   |
+| `highlightOpenFiles.decorations.enable.activeFile` | `boolean` | `true`  | Enable distinct color/badge for the active file |
+| `highlightOpenFiles.decorations.activeBadge`       | `string`  | `▶`     | Badge character for the active file (1-2 chars) |
+| `highlightOpenFiles.decorations.enable.propagate`  | `boolean` | `false` | Propagate color to parent folders in explorer   |
+
+## Active File Highlighting
+
+When `highlightOpenFiles.decorations.enable.activeFile` is enabled, the currently focused file receives a distinct color and badge — making it easy to spot in the explorer and tab bar at a glance.
+
+The active file uses the `highlightOpenFiles.activeFile` color token (defaults to bright purple `#c586c0` on dark themes). Customize both colors independently:
+
+```jsonc
+"workbench.colorCustomizations": {
+    "highlightOpenFiles.openFiles":  "#7a4eb5",  // open files — muted
+    "highlightOpenFiles.activeFile": "#c586c0"   // active file — brighter
+}
+```
+
+The active badge defaults to `▶`. Change it in settings:
+
+```jsonc
+"highlightOpenFiles.decorations.activeBadge": "★"
+```
+
+To disable just the active file distinction while keeping open file highlights, set `highlightOpenFiles.decorations.enable.activeFile` to `false`.
 
 ## Color Customization
 

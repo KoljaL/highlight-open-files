@@ -2,7 +2,7 @@
   "name": "highlight-open-files",
   "displayName": "Highlight Open Files",
   "description": "Highlight currently open files in the editor tabs and explorer with a configurable color and badge.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "engines": {
     "vscode": "^1.74.0"
   },
@@ -12,6 +12,7 @@
     "type": "git",
     "url": "https://github.com/KoljaL/highlight-open-files"
   },
+  "icon": "images/icon.png",
   "main": "./src/extension.js",
   "categories": [
     "Other"
@@ -54,6 +55,29 @@
             "order": 2,
             "default": "●",
             "markdownDescription": "The badge character shown on tabs and explorer entries of open files. Accepts 1-2 characters, including unicode (e.g. `⬤`, `★`, `🔥`).\n\nOnly visible when `#highlightOpenFiles.decorations.enable.badges#` is enabled."
+          },
+          "highlightOpenFiles.decorations.enable.activeFile": {
+            "type": "boolean",
+            "scope": "window",
+            "order": 3,
+            "default": true,
+            "markdownDescription": "Enable a distinct color and badge on the currently active file in tabs and explorer.\n\nThe active file color can be customized via `workbench.colorCustomizations`: `highlightOpenFiles.activeFile`.\n\nThe active file badge can be configured via `#highlightOpenFiles.decorations.activeBadge#`."
+          },
+          "highlightOpenFiles.decorations.activeBadge": {
+            "type": "string",
+            "maxLength": 2,
+            "minLength": 1,
+            "scope": "window",
+            "order": 4,
+            "default": "▶",
+            "markdownDescription": "The badge character shown on the currently active file. Accepts 1-2 characters, including unicode (e.g. `★`, `▶`, `◆`).\n\nOnly visible when `#highlightOpenFiles.decorations.enable.badges#` and `#highlightOpenFiles.decorations.enable.activeFile#` are enabled."
+          },
+          "highlightOpenFiles.decorations.enable.propagate": {
+            "type": "boolean",
+            "scope": "window",
+            "order": 5,
+            "default": false,
+            "markdownDescription": "Propagate the color decoration to parent folders in the explorer. When enabled, folders containing open files will also be tinted."
           }
         }
       }
@@ -67,6 +91,16 @@
           "light": "#663399",
           "highContrast": "#9b6fd4",
           "highContrastLight": "#663399"
+        }
+      },
+      {
+        "id": "highlightOpenFiles.activeFile",
+        "description": "Color for the currently active file in editor tabs and explorer",
+        "defaults": {
+          "dark": "#c586c0",
+          "light": "#9b3dc8",
+          "highContrast": "#e0aaff",
+          "highContrastLight": "#9b3dc8"
         }
       }
     ]
@@ -82,14 +116,15 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.74.0",
     "@types/glob": "^7.2.0",
     "@types/mocha": "^10.0.9",
     "@types/node": "^20.17.0",
+    "@types/vscode": "^1.74.0",
+    "@vscode/test-electron": "^2.4.0",
     "eslint": "^8.57.1",
     "glob": "^7.2.3",
+    "globals": "^17.5.0",
     "mocha": "^10.7.3",
-    "typescript": "^5.7.0",
-    "@vscode/test-electron": "^2.4.0"
+    "typescript": "^5.7.0"
   }
 }
